@@ -47,9 +47,12 @@ fun main(args: Array<String>) {
                     break
                 }
 
-                send(commFd, prefixBuffer.refTo(0), prefixBuffer.size.convert(), 0)
-                    .ensureUnixCallResult("write") { it >= 0 }
-                send(commFd, pinned.addressOf(0), length.convert(), 0)
+                println("Debug:")
+                println(pinned.get().toKString())
+
+                val contents = "HTTP/1.1 200 OK\r\nContent-Length: 33\r\n\r\n<html><h1>Hello World</h1></html>\r\n".cstr
+
+                send(commFd, contents, contents.size, 0)
                     .ensureUnixCallResult("write") { it >= 0 }
             }
         }

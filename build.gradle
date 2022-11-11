@@ -20,7 +20,7 @@ kotlin {
     else if (hostOs == "Linux") nativeTarget = linuxX64("native")
     else if (isMingwX64) nativeTarget = mingwX64("native")
     else throw new GradleException("Host OS is not supported in Kotlin/Native.")
-
+//    nativeTarget = linuxX64("native")
     nativeTarget.with {
         binaries {
             executable {
